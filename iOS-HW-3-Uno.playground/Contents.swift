@@ -93,13 +93,14 @@ struct Card {
     
     func imageName() -> String{
         if color != nil && number != nil && actions == nil {
-            return "\(color)_\(number).png"
+            return "\(color!)_\(number!).png"
         }
         else if actions != nil && color != nil && number == nil {
-            return "\(color)_\(actions).png"
+            print ("\(color!)_\(actions!).png")
+            return "\(color!)_\(actions!).png"
         }
-        else if actions == "Wild" && actions == "Wild_Draw" {
-            return "\(actions).png"
+        else if actions == "Wild" || actions == "Wild_Draw" {
+            return "\(actions!).png"
         }
         return ""
     }
@@ -116,15 +117,17 @@ for colour in color {
     for number in 1...9 {
         cards.append(Card(color: colour, number: number))
         
-    } //LOOP 2
-    for action in actions {
-        cards.append(Card(actions: action))
     }
-    
-    for blackAction in blackActions {
+    for i in 0...1{
+       for action in actions {
+        cards.append(Card(color: colour, actions: action))
+    }
+    }
+   
+       for blackAction in blackActions {
         cards.append(Card( actions: blackAction))
     }
-    // END LOOP
+    
 }
 
 
